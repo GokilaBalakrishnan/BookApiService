@@ -1,5 +1,6 @@
 from openai import AzureOpenAI  
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import requests
 import os  
 import base64
@@ -7,6 +8,7 @@ import json
 
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})   # allow all origins on /api/*
 
 @app.route("/api/messages", methods=["POST"])
 def messages():
